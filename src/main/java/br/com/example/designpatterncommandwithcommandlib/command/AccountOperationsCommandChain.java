@@ -9,7 +9,6 @@ public class AccountOperationsCommandChain extends AbstractCommandChain<AccountO
     @Override
     public void execute() throws IllegalStateException {
         super.execute();
-
         invoke(DepositCommand.class, DepositCommand.Request.builder()
                 .account(getParameter().getAccount())
                 .amount(getParameter().getDepositAmount())
@@ -23,6 +22,5 @@ public class AccountOperationsCommandChain extends AbstractCommandChain<AccountO
         invoke(ExtractCommand.class, ExtractCommand.Request.builder().account(getParameter().getAccount()).build());
 
         setResult(getParameter().getAccount());
-
     }
 }
