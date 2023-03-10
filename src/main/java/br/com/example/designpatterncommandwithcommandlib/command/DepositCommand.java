@@ -14,6 +14,6 @@ public class DepositCommand extends AbstractCommand<DepositCommand.Request, Void
     @Builder
     public static class Request{
         private BankAccount account;
-        private Double depositAmount;
+        private Double amount;
     }
 }

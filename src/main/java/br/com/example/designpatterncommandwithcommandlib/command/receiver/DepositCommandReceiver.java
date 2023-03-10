@@ -10,7 +10,7 @@ public class DepositCommandReceiver extends AbstractReceiver<DepositCommand.Requ
 
     @Override
     protected Void doExecute(DepositCommand.Request parameter) {
-        parameter.getAccount().setAmount(parameter.getAccount().getAmount() + parameter.getDepositAmount());
+        parameter.getAccount().setAmount(parameter.getAccount().getAmount() + parameter.getAmount());
         return null;
     }
 }

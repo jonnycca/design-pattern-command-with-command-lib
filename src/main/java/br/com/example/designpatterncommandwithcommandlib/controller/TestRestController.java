@@ -1,7 +1,9 @@
 package br.com.example.designpatterncommandwithcommandlib.controller;
 
 import br.com.example.commandlib.gateway.CommandGateway;
+import br.com.example.designpatterncommandwithcommandlib.command.AccountOperationsCommandChain;
 import br.com.example.designpatterncommandwithcommandlib.command.ExtractCommand;
+import br.com.example.designpatterncommandwithcommandlib.command.request.AccountOperationsCommandChainRequest;
 import br.com.example.designpatterncommandwithcommandlib.domain.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,9 +17,13 @@ public class TestRestController {
     CommandGateway commandGateway;
 
     @PostMapping("/teste")
-    public void test(){
-        BankAccount bankAccount = new BankAccount(100.0);
+    public BankAccount test(){
+        BankAccount account = new BankAccount(0.0);
 
-        commandGateway.invoke(ExtractCommand.class, ExtractCommand.Request.builder().account(bankAccount).build());
+        return commandGateway.invoke(AccountOperationsCommandChain.class, AccountOperationsCommandChainRequest.builder()
+                .account(account)
+                .depositAmount(100.0)
+                .withdrawAmount(10.0)
+                .build());
     }
 }
